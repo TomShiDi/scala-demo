@@ -25,6 +25,9 @@ object ClassTest {
 
     val c2 = new ScalaClass2("tomshidi", 1, "M")
     println("构造器定义成员变量age：" + c2.age)
+
+    val s1 = new SubClass("阿鲁巴")
+    s1.sayName()
   }
 }
 
@@ -50,6 +53,10 @@ class ScalaClass1(n: String) {
     this.age = a
     println("调用辅助构造器2")
   }
+
+  def sayName(): Unit = {
+    println("父类name：" + name)
+  }
 }
 
 // 主构造器参数 分为3类:
@@ -58,6 +65,15 @@ class ScalaClass1(n: String) {
 // var 修饰 : 会自动生产同名的属性 并且定义为var
 class ScalaClass2(name1: String, val age: Int, var sex: String) {
   val name: String = name1
+}
+
+class SubClass(address: String) extends ScalaClass1("tomshidi") {
+  override val name: String = "sub"
+
+  override def sayName(): Unit = {
+    println("子类name：" + name)
+    super.sayName()
+  }
 }
 
 class ClassTest() {
